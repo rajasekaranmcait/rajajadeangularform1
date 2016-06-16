@@ -1,4 +1,3 @@
-User Authentication using passport:
 
 User Authentication for login and register using:
 
