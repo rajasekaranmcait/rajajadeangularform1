@@ -1,9 +1,10 @@
-form validation using passport:
+User Authentication using passport:
 
-form validation for login and register using:
+User Authentication for login and register using:
+
    *jade
    *angularjs
    *passport
-   *mongodb
+   *mongodb(mongoose)
    *express
    
