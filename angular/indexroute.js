@@ -1,5 +1,5 @@
-var myApp = angular.module('myModule', ['ngRoute']);
-myApp.config(function ($routeProvider)
+myApp
+    .config(function ($routeProvider)
 {
     $routeProvider
         .when('/login',

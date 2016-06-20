@@ -3,15 +3,17 @@ html
     head
         title Authentication
         //link(href='../styles/bootstrap.css', rel='stylesheet')
-        link(href='../styles/bootstrapjumbo.css', rel='stylesheet')
+        link(href='/styles/bootstrapjumbo.css', rel='stylesheet')
         //script(type='text/javascript', src='../styles/bootstrap.js')
         link(href='https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet')
         link(href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', rel='stylesheet')
         script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js')
-        script(type='text/javascript', src='../angular/registercontroller.js')
-        script(type='text/javascript', src='../angular/logincontroller.js')
-        script(type='text/javascript', src='../angular/password-validator.js')
-    body(data-ng-controller='registerCtrl')
+        script(type="text/javascript", src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js")
+        script(type='text/javascript', src='app.js')
+        script(type='text/javascript', src='registercontroller.js')
+        script(type='text/javascript', src='logincontroller.js')
+        script(type='text/javascript', src='password-validator.js')
+    body(data-ng-controller='registerCtrl', ng-app="myModule")
         .container
             nav.navbar.navbar-inverse
                 .container
@@ -24,7 +26,7 @@ html
                             a.btn.btn-success.btn-sm(href='/signup') Register
                 .jumbotron
                     h2 King Dance Academy
-                        form.margin-base-vertical(name='userForm' method='post', action='/signup' data-ng-submit='postData(userForm.$valid)' novalidate='')
+                        form.margin-base-vertical(name='userForm' method='post', action='/signup', data-ng-submit='postData(userForm.$valid)' novalidate='')
                             .container
                                 if message.length > 0
                                     .alert.alert-danger
@@ -36,37 +38,38 @@ html
                                         p.input-group
                                             span.input-group-addon
                                                 span.icon-user
-                                            input.form-control.input-md(type='email', name='email', data-ng-model='registration.email',placeholder='Email Id' required='')
-                                            span(data-ng-show='userForm.email.$dirty && userForm.email.$invalid')
-                                              span(data-ng-show='userForm.email.$error.email.required') Email Id is required
+                                            input.form-control.input-md(type='email', name='email', data-ng-model='registration.email',placeholder='Email Id', data-ng-required='true')
+                                            span(data-ng-show='userForm.email.$dirty && userForm.email.$invalid') Email Id is required
                                         p.input-group
                                             span.input-group-addon
                                                 span.icon-user
-                                            input.form-control.input-md(type='firstname', name='firstname', data-ng-model='registration.firstname', data-ng-maxlength='10', placeholder='First Name' data-ng-required='true')
+                                            input.form-control.input-md(type='firstname', name='firstname', data-ng-model='registration.firstname', data-ng-maxlength='10', placeholder='First Name', data-ng-required='true')
                                             span.error(data-ng-show='userForm.firstname.$invalid && userForm.firstname.$dirty')
                                                 | first name should be below 10 char
                                         p.input-group
                                             span.input-group-addon
                                                 span.icon-user
-                                            input.form-control.input-md(type='lastname', name='lastname', data-ng-model='registration.lastname', data-ng-maxlength='10', placeholder='Last Name' data-ng-required='true')
+                                            input.form-control.input-md(type='lastname', name='lastname', data-ng-model='registration.lastname', data-ng-maxlength='10', placeholder='Last Name', data-ng-required='true')
                                             span.error(data-ng-show='userForm.lastname.$invalid && userForm.lastname.$dirty')
                                                 | last name should be below 10 char
                                         p.input-group
                                             span.input-group-addon
                                                 span.icon-user
-                                            input.form-control.input-md(type='number', name='age', data-ng-model='registration.age',placeholder='Age' data-ng-min='5', data-ng-required='true')
+                                            input.form-control.input-md(type='number', name='age', data-ng-model='registration.age',placeholder='Age' min="5", step="1", data-ng-required='true')
                                             span.error(data-ng-show='userForm.age.$invalid && userForm.age.$dirty')
                                                 | Age should be above 5
                                         p.input-group
                                             span.input-group-addon
                                                 span.icon-user
-                                            input.form-control.input-md(type='password', name='password', data-ng-model='registration.password', data-ng-minlength='8' data-ng-maxlength='20', placeholder='Password' data-ng-required='true')
+                                            input.form-control.input-md(type='password', name='password', data-ng-model='registration.password', data-ng-minlength='8', data-ng-maxlength='20', placeholder='Password' data-ng-required='true')
                                             span.error(data-ng-show='userForm.password.$invalid && userForm.password.$dirty')
                                                 | Passwords must be between 8 and 20 characters.
                                         p.input-group
                                             span.input-group-addon
                                                 span.icon-user
-                                            input.form-control.input-md(type='password', name='confirmpassword', placeholder='Confirm Password', data-ng-model='registration.confirmpassword' valid-password="confirmpassword != password ? 'Password does not match' ", data-ng-required='true')
+                                            input.form-control.input-md(type='password', name='confirmpassword', placeholder='Confirm Password', data-ng-model='registration.confirmpassword' , data-ng-required='true')
+                                            span.error(data-ng-show='userForm.confirmpassword.$error.match')
+                                                | Passwords don't match.
                                         br
                                         div
                                           button.btn.btn-success.btn-lg.text-center(data-ng-disabled='userForm.$invalid', type='submit', value='Submit')

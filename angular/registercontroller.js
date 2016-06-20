@@ -1,4 +1,5 @@
-myApp.controller('registerCtrl',['$scope', function ($scope)
+myApp
+    .controller('registerCtrl',['$scope', function ($scope)
 {
   $scope.postData = function (isValid)
                     {

@@ -1,4 +1,5 @@
-myApp.controller('loginCtrl',['$scope', function ($scope)
+myApp
+    .controller('loginCtrl',['$scope', function ($scope)
 {
     $scope.onSubmit = function ()
     {
